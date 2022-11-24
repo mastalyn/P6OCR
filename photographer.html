@@ -1,49 +1,109 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<link href="css/style.css" rel="stylesheet" type="text/css" />
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/png" href="assets/favicon.png" />
-		<link
-			href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
-			rel="stylesheet"
-			/>
-		<title>Fisheye - photographe</title>
-	</head>
-	<body id="body-photographer">
-		<header>
-			<img src="./assets/logo.png" class="logo" />
-		</header>
-		<main class="main">
-			<section id="photographeInfos"></section>
-			<div id="contact_modal" aria-label="Formulaire de contact"
-				
-				<div class="modal">
-					<header>
-						<h2>Contactez-moi</h2>
-						
-					</header>
-					<form>
-						<div>
-							<div class="first-container">
-								<label>Prénom</label>
-								<input/>								
-							</div>							
-							
-						</div>
-						<button type="submit" class="contact_button">Envoyer</button>
-					</form>
-				</div>
-			</div>
-			
+  <head>
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
+    <link
+      href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/41909ecb08.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Fisheye - photographe</title>
+  </head>
+  <body id="body-photographer">
+    <header>
+      <img src="assets/images/logo.png" class="logo" />
+    </header>
+    <main id="main" class="main" aria-hidden="false">
+      <section id="photographeInfos"></section>
+      <div
+        id="contact_modal"
+        aria-label="Formulaire de contact"
+        aria-haspopup="dialog"
+        aria-controls="dialog"
+        role="dialog"
+      >
+        <div class="modal">
+          <header>
+            <h2>Contactez-moi</h2>
+            <img src="assets/icons/close.svg" onclick="closeModal()" />
+          </header>
+          <form novalidate>
+            <div>
+              <div class="first-container">
+                <label>Prénom</label>
+                <input
+                  for="first"
+                  id="first"
+                  name="first"
+                  type="text"
+                  minlength="2"
+                  required
+                />
+                <span></span>
+              </div>
+              <div class="last-container">
+                <label>Nom</label>
+                <input
+                  for="last"
+                  id="last"
+                  name="last"
+                  type="text"
+                  minlength="2"
+                  required
+                />
+                <span></span>
+              </div>
+              <div class="email-container">
+                <label>Email</label>
+                <input
+                  for="email"
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                />
+                <span></span>
+              </div>
+              <div class="textarea-container">
+                <label>Votre message</label>
+                <input
+                  for="textarea"
+                  id="textarea"
+                  name="textarea"
+                  type="text"
+                  required
+                />
+                <span></span>
+              </div>
+            </div>
+            <button type="submit" class="contact_button">Envoyer</button>
+          </form>
+        </div>
+      </div>
+     
+      <div class="photographer_media"></div>
+      <section
+        id="lightbox"
+        class="lightbox-background"
+        role="lightbox"
+        aria-modal="true"
+        aria-hidden="true"
+        tabindex="-1"
+      >
+        <i id="close" class="fa-solid fa-xmark" alt="close button"></i>
+        <i class="fa-solid fa-arrow-right droite"></i>
+        <i class="fa-solid fa-arrow-left gauche"></i>
+      </section>
+    </main>
+  </body>
+  <script src="scripts/pages/photographer.js"></script>
+  <script src="scripts/factories/media.js"></script>
+  <script src="scripts/factories/photographer.js"></script>
+  <script src="scripts/utils/contactform.js"></script>
 
-			
-        
-			<div class="photographer_media"></div>
-		</main>
-	</body>
-	<script src="scripts/pages/photographer.js"></script>
-	<script src="scripts/factories/media.js"></script>
-	<script src="scripts/factories/photographer.js"></script>
-	<script src="scripts/utils/contactform.js"></script>
 </html>
