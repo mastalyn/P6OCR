@@ -51,10 +51,7 @@ function photographerFactory(data) {
     photographer_footer.setAttribute("class", "photographer_footer");
 
     const photographer_footer_likes = document.createElement("div");
-    photographer_footer_likes.setAttribute(
-      "class",
-      "photographer_footer_likes"
-    );
+    photographer_footer_likes.setAttribute("class", "photographer_footer_likes");
     photographer_footer_likes.setAttribute("id", "totalLike");
 
     const photographer_footer_icon = document.createElement("img");
@@ -64,10 +61,7 @@ function photographerFactory(data) {
 
     const photographer_footer_price = document.createElement("p");
     photographer_footer_price.textContent = `${price}€ / jour`;
-    photographer_footer_price.setAttribute(
-      "class",
-      "photographerPrice--profile photographer_footer_price"
-    );
+    photographer_footer_price.setAttribute("class","photographerPrice--profile photographer_footer_price" );
     photographer_footer_price.setAttribute("lang", "fr");
 
     identity.setAttribute("class", "photographer_header");

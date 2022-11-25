@@ -26,7 +26,7 @@ function mediaFactory(mediaData) {
 
     // Pop method for media
     // In MP4 case
-    if (mediaVideo.split(".").pop() == "mp4") {
+    if (mediaVideo.split(".").pop() === "mp4") {
       const video = document.createElement("video");
       video.setAttribute("controls", "");
       video.setAttribute("class", "media_image");
@@ -40,7 +40,7 @@ function mediaFactory(mediaData) {
       mediaLink.append(video);
     }
     // In JPG case
-    if (mediaImage.split(".").pop() == "jpg") {
+    if (mediaImage.split(".").pop() === "jpg") {
       const image = document.createElement("img");
       image.setAttribute("class", "media_image");
       image.setAttribute("src", mediaImage);
