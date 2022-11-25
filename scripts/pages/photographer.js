@@ -51,6 +51,7 @@ function displayDataMedia(medias) {
     totalLike += media.likes;
     document.querySelector("#totalLike").innerHTML = totalLike;
   });
+  return displaylikes;
 }
 
 // Fonction pour l'affichage des médias dans la lightbox
@@ -58,6 +59,7 @@ function displayDataMedia(medias) {
 // Fonction pour le tri des médias
 function mediasSort(type) {
   let mediaContainer = document.querySelectorAll(".media_container");
+  //coupe mediacontaianer en autant de médias qu'il ya , trouve une array de media 
   mediaContainer = [].slice.call(mediaContainer);
   if (type === "title") {
     sortByTitle(mediaContainer);
@@ -70,6 +72,8 @@ function mediasSort(type) {
   // Fonction pour l'affichage alphabétique
   function sortByTitle(mediaContainer) {
     mediaContainer.sort(function (a, b) {
+      //chaine à comparer en l'occurence les titres et range en alpha
+      console.log(a.dataset.title.localeCompare(b.dataset.title))
       return a.dataset.title.localeCompare(b.dataset.title);
     });
   }
@@ -84,6 +88,7 @@ function mediasSort(type) {
   // Fonction pour l'affichage par date
   function sortByDate(mediaContainer) {
     mediaContainer.sort(function (a, b) {
+      
       return a.dataset.date.localeCompare(b.dataset.date);
     });
   }

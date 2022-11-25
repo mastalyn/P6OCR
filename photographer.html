@@ -5,14 +5,9 @@
     <meta charset="utf-8" />
     <link rel="icon" type="image/png" href="assets/favicon.png" />
     <link
-      href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
-      rel="stylesheet"
-    />
-    <script
-      src="https://kit.fontawesome.com/41909ecb08.js"
-      crossorigin="anonymous"
-    ></script>
-    <title>Fisheye - photographe</title>
+      href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" >
+   
   </head>
   <body id="body-photographer">
     <header>
@@ -85,6 +80,26 @@
           </form>
         </div>
       </div>
+      <div
+        role="search"
+        aria-hidden="false"
+        class="sort select-filter"
+        aria-label="Menu pour trier photos"
+      >
+        <div class="sort-choice"></div>
+        <span> Trier par </span>
+        <select
+          name="sorter"
+          id="sort-choice"
+          onchange="mediasSort(this.value)" >
+          
+          <option value="popularite" aria-label="Tri popularité">Popularité</option>
+          <option disabled="disabled"></option>
+          <option value="date" aria-label="Tri date publication">Date</option>
+          <option disabled="disabled"></option>
+          <option value="title" aria-label="Tri alphabétique">Titre</option>
+        </select>
+      </div>
      
       <div class="photographer_media"></div>
       <section
@@ -93,7 +108,7 @@
         role="lightbox"
         aria-modal="true"
         aria-hidden="true"
-        tabindex="0"
+        tabindex="-1"
       >
         <i id="close" class="fa-solid fa-xmark" alt="close button"></i>
         <i class="fa-solid fa-arrow-right droite"></i>
