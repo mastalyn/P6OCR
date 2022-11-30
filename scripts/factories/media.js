@@ -120,15 +120,58 @@ function mediaFactory(mediaData) {
     mediaLikesButton.appendChild(mediaLikesButtonImage);
 
     // Ajout d'un like pour chaque média lorsque l'utilisateur clique sur le bouton
-    function increaseLikes() {
-      let count = like;
-      count++;
-      mediaLikes.innerText = count;
-      totalLike.innerText = parseInt(totalLike.innerText) + 1; // Ajout d'un like dans la bannière totale
-      return count;
-    }
+   
+  
+    function toggle(){
+      let count= like;
+      let elementHasBeenClicked = false;
+      
+      
+      mediaLikesButton.addEventListener('click', function handleClick() {
+       count++;
+        mediaLikes.innerText=count;
+         // mediaLikes.innerText =parseInt(mediaLikes.innerText) +1;
+          console.log(mediaLikes.innerText)
+        totalLike.innerText = parseInt(totalLike.innerText) +1; // Ajout d'un like dans la bannière totale
+          
+          console.log('element clicked');
+          if (elementHasBeenClicked) {
+          
+        
+        
+            console.log('button has already been clicked before');
+            count--;
+            mediaLikes.innerText=count;
+            
+            //mediaLikes.innerText =parseInt(mediaLikes.innerText)-1 ;
+            console.log(mediaLikes.innerText)
+            totalLike.innerText = parseInt(totalLike.innerText)-1 ;
+            console.log(totalLike.innerText)
+            
+          
+            
+            
+          }
+        
+          
+        
+          elementHasBeenClicked = true;
+          return count;
+        
+        
+     
+      
+       
+        
+        
 
-    mediaLikesButton.addEventListener("click", increaseLikes);
+      });
+   
+
+  }
+  toggle();
+    
+ 
 
     return mediaContainer;
   }
