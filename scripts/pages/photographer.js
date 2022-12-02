@@ -1,5 +1,5 @@
 async function getPhotographer() {
-  // const id = window.location.search.split("id=")[1];
+  
 
   const params = new URLSearchParams(window.location.search);
   const id = params.get("id");

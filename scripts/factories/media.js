@@ -1,11 +1,13 @@
 function mediaFactory(mediaData) {
-  const { price, likes, image, video, title, date } = mediaData;
+  const { price, likes, image, video, title, date, id } = mediaData;
+  
 
   const mediaImage = `assets/photographers/medias/${image}`;
   const mediaVideo = `assets/photographers/medias/${video}`;
   const like = `${likes}`;
   const dates = `${date}`;
   const titles = `${title}`;
+  const mediaId = `${id}`;
 
   function getUserMedia() {
     const mediaContainer = document.createElement("div");
@@ -26,11 +28,14 @@ function mediaFactory(mediaData) {
 
     // Pop method for media
     // In MP4 case
-    if (mediaVideo.split(".").pop() === "mp4") {
+    if (mediaVideo.split(".").pop() == "mp4") {
       const video = document.createElement("video");
       video.setAttribute("controls", "");
       video.setAttribute("class", "media_image");
       video.setAttribute("src", mediaVideo);
+      video.setAttribute("tabindex", 6);
+      video.controls = true;
+      video.setAttribute("alt", `${title}`);
       const source = document.createElement("source");
       source.setAttribute("src", mediaVideo);
       source.setAttribute("type", "video/mp4");
@@ -40,35 +45,44 @@ function mediaFactory(mediaData) {
       mediaLink.append(video);
     }
     // In JPG case
-    if (mediaImage.split(".").pop() === "jpg") {
+    if (mediaImage.split(".").pop() == "jpg") {
       const image = document.createElement("img");
       image.setAttribute("class", "media_image");
       image.setAttribute("src", mediaImage);
+      image.setAttribute("media-id", mediaId);
+      image.setAttribute("alt", `${title}`);
 
       mediaContainer.append(mediaLink, image, mediaDescription);
       mediaLink.append(image);
     }
 
+    // keyboard accessiblity
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        video.paused ? video.play() : video.pause();
+      }
+    });
+
     // Lightbox
     const lightbox = document.getElementById("lightbox");
     const mediaLightbox = document.createElement("div");
-
     const closeBtn = document.querySelector("#close");
-    const leftArrow = document.querySelector(".gauche");
-    const nextArrow = document.querySelector(".droite");
     const mediaImg = document.createElement("img");
     const mediaVid = document.createElement("video");
+    const previousBtn = document.querySelector(".gauche");
+    const nextBtn = document.querySelector(".droite");
+    const modalBg = document.getElementById("contact_modal");
+
     mediaVid.setAttribute("controls", "");
 
     mediaImg.setAttribute("src", mediaImage);
+    mediaImg.setAttribute("class", "medias");
+    mediaImg.setAttribute("media-id", mediaId);
     mediaVid.setAttribute("src", mediaVideo);
 
     mediaLightbox.setAttribute("id", "mediaLightbox");
-    mediaLink.onclick = function () {
-      console.log(mediaImage, "onclick");
-      console.log(mediaVideo, "onclick");
-      console.log(typeof mediaVideo);
 
+    mediaLink.onclick = function () {
       if (!mediaImage.includes("undefined")) {
         openLightbox(mediaImg);
       } else {
@@ -90,7 +104,76 @@ function mediaFactory(mediaData) {
       lightbox.innerHTML = "";
     }
 
-    //
+    document.onkeyup = (e) => {
+      switch (e.key) {
+        case "Escape":
+          // Close contactForm & lightbox
+          document.querySelectorAll(".modal").forEach(() => {
+            modalBg.style.display = "none";
+            document.getElementById("lightbox").style.display = "none";
+            lightbox.innerHTML = "";
+          });
+          break;
+      }
+    };
+
+    // left & right arrows keys
+    function checkKey(e) {
+      e = e || window.event;
+
+      if (e.keyCode === 37 && lightbox.style.display == "flex") {
+        e.preventDefault();
+        document.getElementById("leftarrow").click();
+        // left arrow
+      } else if (e.keyCode === 39 && lightbox.style.display == "flex") {
+        document.getElementById("rightarrow").click();
+        // right arrow
+      }
+    }
+
+    // Next and previous button
+    previousBtn.onclick = (event) => {
+      const media = event.target.previousElementSibling.querySelector("[media-id]");
+      console.log(media);
+      const actualMediaIndex = window.photographers.mediaData.findIndex(
+        ({ id }) => id === media.getAttribute("media-id")
+      );
+      console.log(actualMediaIndex);
+      let previousMediaIndex = actualMediaIndex - 1;
+      if (previousMediaIndex < 0)
+        previousMediaIndex = window.photographers.media.length - 1;
+    };
+
+    // right arrow event : next media onclick
+    nextBtn.onclick = (event) => {
+      const media = event.target.nextElementSibling.querySelector("[media-id]");
+      const actualMediaIndex = window.photographer.mediaData.findIndex(
+        ({ id }) => id === media.getAttribute("media-id")
+      );
+
+      let nextMediaIndex = actualMediaIndex + 1;
+      if (nextMediaIndex >= window.photographer.medias.length)
+        nextMediaIndex = 0;
+    };
+
+    // let i = 0; // Current image index
+
+    // previousBtn.addEventListener("click", () => {
+    //   if (i <= 0) i = mediaImage.length;
+    //   i--;
+    //   return setImg();
+    // });
+
+    // nextBtn.addEventListener("click", () => {
+    //   if (i >= mediaImage.length - 1) i = -1;
+    //   i++;
+    //   return setImg();
+    // });
+
+    // function setImg() {
+    //   return mediaImg.setAttribute("src", "mediaImg" + mediaImg[i]);
+    // }
+
     mediaDescription.setAttribute("class", "media_description");
     //
     mediaTitle.setAttribute("class", "media_title");
@@ -119,7 +202,7 @@ function mediaFactory(mediaData) {
     );
     mediaLikesButton.appendChild(mediaLikesButtonImage);
 
-    // Ajout d'un like pour chaque média lorsque l'utilisateur clique sur le bouton
+    
    
   
     function toggle(){
@@ -178,3 +261,4 @@ function mediaFactory(mediaData) {
 
   return { getUserMedia };
 }
+
