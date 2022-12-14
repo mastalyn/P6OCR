@@ -5,6 +5,11 @@
     <meta charset="utf-8" />
     <link rel="icon" type="image/png" href="assets/favicon.png" />
     <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css"
+    />
+    
+    <link
       href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" >
    
@@ -114,34 +119,33 @@
         </select>
       </div>
       <div class="photographer_media"></div>
-      <section
-        id="lightbox"
-        class="lightbox-background"
-        role="lightbox"
-        aria-modal="true"
-        aria-hidden="true"
-        tabindex="-1"
-      >
-        <i id="close" class="fa-solid fa-xmark" alt="close button"></i>
-        <i
-          id="rightarrow"
-          class="fa-solid fa-arrow-right droite"
-          alt="right button"
-          tabindex="-1"
-        ></i>
-        <i
-          id="leftarrow"
-          class="fa-solid fa-arrow-left gauche"
-          alt="left button"
-          tabindex="-1"
-        ></i>
+     <section>
+    
+      <a data-fslightbox="gallery"></a>
       </section>
+     
+      
     </main>
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+    
   </body>
+    
+ 
+  
   <script src="scripts/pages/photographer.js"></script>
+ 
   <script src="scripts/factories/media.js"></script>
-  <script src="scripts/factories/photographer.js"></script>
-  <script src="scripts/utils/contactform.js"></script>
+  <script  src="scripts/factories/photographer.js"></script>
+  <script  src="scripts/utils/contactform.js"></script>
+ 
+  
+ 
+  
+ 
+ 
+  
+
+ 
  
 
 </html>

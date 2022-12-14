@@ -1,3 +1,6 @@
+
+
+
 function photographerFactory(data) {
   const { name, portrait, city, country, id, price, tagline } = data;
 

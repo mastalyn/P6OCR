@@ -1,3 +1,6 @@
+
+
+
 async function getPhotographer() {
   
 
@@ -25,6 +28,7 @@ async function init() {
   console.log(photographer);
   displayData(photographer.photographers);
   displayDataMedia(photographer.media);
+ 
 }
 
 // Fonction qui fait appraitre les photographes
@@ -100,4 +104,10 @@ function mediasSort(type) {
     mediaslist.append(media);
   });
 }
+
+
+
+
+
+ 
 init();

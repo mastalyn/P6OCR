@@ -1,5 +1,7 @@
-function mediaFactory(mediaData) {
-  const { price, likes, image, video, title, date, id } = mediaData;
+ 
+ 
+ function mediaFactory(mediaData) {
+   const { price, likes, image, video, title, date, id } =  mediaData;
   
 
   const mediaImage = `assets/photographers/medias/${image}`;
@@ -63,117 +65,7 @@ function mediaFactory(mediaData) {
       }
     });
 
-    // Lightbox
-    const lightbox = document.getElementById("lightbox");
-    const mediaLightbox = document.createElement("div");
-    const closeBtn = document.querySelector("#close");
-    const mediaImg = document.createElement("img");
-    const mediaVid = document.createElement("video");
-    const previousBtn = document.querySelector(".gauche");
-    const nextBtn = document.querySelector(".droite");
-    const modalBg = document.getElementById("contact_modal");
-
-    mediaVid.setAttribute("controls", "");
-
-    mediaImg.setAttribute("src", mediaImage);
-    mediaImg.setAttribute("class", "medias");
-    mediaImg.setAttribute("media-id", mediaId);
-    mediaVid.setAttribute("src", mediaVideo);
-
-    mediaLightbox.setAttribute("id", "mediaLightbox");
-
-    mediaLink.onclick = function () {
-      if (!mediaImage.includes("undefined")) {
-        openLightbox(mediaImg);
-      } else {
-        openLightbox(mediaVid);
-      }
-    };
-
-    closeBtn.onclick = function () {
-      closeLightbox();
-    };
-
-    function openLightbox(media) {
-      lightbox.style.display = "block";
-      lightbox.append(media);
-    }
-
-    function closeLightbox() {
-      lightbox.style.display = "none";
-      lightbox.innerHTML = "";
-    }
-
-    document.onkeyup = (e) => {
-      switch (e.key) {
-        case "Escape":
-          // Close contactForm & lightbox
-          document.querySelectorAll(".modal").forEach(() => {
-            modalBg.style.display = "none";
-            document.getElementById("lightbox").style.display = "none";
-            lightbox.innerHTML = "";
-          });
-          break;
-      }
-    };
-
-    // left & right arrows keys
-    function checkKey(e) {
-      e = e || window.event;
-
-      if (e.keyCode === 37 && lightbox.style.display == "flex") {
-        e.preventDefault();
-        document.getElementById("leftarrow").click();
-        // left arrow
-      } else if (e.keyCode === 39 && lightbox.style.display == "flex") {
-        document.getElementById("rightarrow").click();
-        // right arrow
-      }
-    }
-
-    // Next and previous button
-    previousBtn.onclick = (event) => {
-      const media = event.target.previousElementSibling.querySelector("[media-id]");
-      console.log(media);
-      const actualMediaIndex = window.photographers.mediaData.findIndex(
-        ({ id }) => id === media.getAttribute("media-id")
-      );
-      console.log(actualMediaIndex);
-      let previousMediaIndex = actualMediaIndex - 1;
-      if (previousMediaIndex < 0)
-        previousMediaIndex = window.photographers.media.length - 1;
-    };
-
-    // right arrow event : next media onclick
-    nextBtn.onclick = (event) => {
-      const media = event.target.nextElementSibling.querySelector("[media-id]");
-      const actualMediaIndex = window.photographer.mediaData.findIndex(
-        ({ id }) => id === media.getAttribute("media-id")
-      );
-
-      let nextMediaIndex = actualMediaIndex + 1;
-      if (nextMediaIndex >= window.photographer.medias.length)
-        nextMediaIndex = 0;
-    };
-
-    // let i = 0; // Current image index
-
-    // previousBtn.addEventListener("click", () => {
-    //   if (i <= 0) i = mediaImage.length;
-    //   i--;
-    //   return setImg();
-    // });
-
-    // nextBtn.addEventListener("click", () => {
-    //   if (i >= mediaImage.length - 1) i = -1;
-    //   i++;
-    //   return setImg();
-    // });
-
-    // function setImg() {
-    //   return mediaImg.setAttribute("src", "mediaImg" + mediaImg[i]);
-    // }
-
+   
     mediaDescription.setAttribute("class", "media_description");
     //
     mediaTitle.setAttribute("class", "media_title");
@@ -202,7 +94,18 @@ function mediaFactory(mediaData) {
     );
     mediaLikesButton.appendChild(mediaLikesButtonImage);
 
-    
+    const fancybox = Fancybox.show([
+      {
+        src:mediaImage,
+        type: "image",
+      },
+      {
+        src: mediaVideo,
+        type: "video",
+      },
+    ]);
+   
+  console.log(fancybox)
    
   
     function toggle(){
@@ -262,3 +165,4 @@ function mediaFactory(mediaData) {
   return { getUserMedia };
 }
 
+ 
