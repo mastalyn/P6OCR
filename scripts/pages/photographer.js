@@ -28,6 +28,7 @@ async function init() {
   console.log(photographer);
   displayData(photographer.photographers);
   displayDataMedia(photographer.media);
+  addEventsListeners()
  
 }
 
@@ -105,9 +106,83 @@ function mediasSort(type) {
   });
 }
 
+/*function toggle(mediaLikesButton){
+  let count= like;
+  let elementHasBeenClicked = false;
+  mediaLikesButton.addEventListener('click', function handleClick() {
+    
+    
+      
+      console.log('element clicked');
+      if (elementHasBeenClicked) {
+        console.log('button has already been clicked before');
+        count--;
+        mediaLikes.innerText=count;
+        
+        //mediaLikes.innerText =parseInt(mediaLikes.innerText)-1 ;
+        console.log(mediaLikes.innerText)
+        totalLike.innerText = parseInt(totalLike.innerText)-1 ;
+        console.log(totalLike.innerText)
+      } else {
+        count++;
+        totalLike.innerText = parseInt(totalLike.innerText) +1;
+      }
+      mediaLikes.innerText=count;
+     // mediaLikes.innerText =parseInt(mediaLikes.innerText) +1;
+      console.log(mediaLikes.innerText)
+     // Ajout d'un like dans la bannière totale
+      elementHasBeenClicked = true;
+      return count;
+  });
+}*/
 
 
+function addEventsListeners() {
+  let isActive = false;
 
+  const collection = document.querySelectorAll('.media_likesbuttonimage');
+ //const mediaLikes=document.querySelectorAll('.media_likes');
+
+ 
+  collection.forEach(function (el) {
+    el.addEventListener('click', function handleClick() {
+      console.log('click', el.dataset.likes)
+      let count= el.dataset.likes;
+     // console.log(count)
+      
+  if (isActive){  
+     count ++;
+     console.log('increment', parseInt(count))
+   
+    
+  }else{count --;
+    isActive = true;
+    console.log('decrement', parseInt(count))
+   
+  }
+  collection.innerText = count;
+ // console.log(collection.innerText)
+  //totalLike.innerText = parseInt(totalLike.innerText) + 1; // Ajout d'un like dans la bannière totale
+ 
+   
+ 
+    
+
+
+  
+
+  return count
+  
+    });
+  
+  
+  })
+
+
+ 
+
+
+}
 
  
 init();
