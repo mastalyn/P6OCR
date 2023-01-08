@@ -1,9 +1,9 @@
-
-
+/*
+global photographerFactory, mediaFactory
+*/
+const mediaLikes = {};
 
 async function getPhotographer() {
-  
-
   const params = new URLSearchParams(window.location.search);
   const id = params.get("id");
   console.log(id);
@@ -18,6 +18,9 @@ async function getPhotographer() {
   photographers.media = photographers.media.filter(
     (media) => media.photographerId == id
   );
+  photographers.media.forEach((m) => {
+    mediaLikes[m.id] = false;
+  });
 
   return photographers;
 }
@@ -28,8 +31,7 @@ async function init() {
   console.log(photographer);
   displayData(photographer.photographers);
   displayDataMedia(photographer.media);
-  addEventsListeners()
- 
+  addEventsListeners();
 }
 
 // Fonction qui fait appraitre les photographes
@@ -62,9 +64,10 @@ function displayDataMedia(medias) {
 // Fonction pour l'affichage des médias dans la lightbox
 
 // Fonction pour le tri des médias
+// eslint-disable-next-line no-unused-vars
 function mediasSort(type) {
   let mediaContainer = document.querySelectorAll(".media_container");
-  //coupe mediacontaianer en autant de médias qu'il ya , trouve une array de media 
+  //coupe mediacontaianer en autant de médias qu'il ya , trouve une array de media
   mediaContainer = [].slice.call(mediaContainer);
   if (type === "title") {
     sortByTitle(mediaContainer);
@@ -78,7 +81,7 @@ function mediasSort(type) {
   function sortByTitle(mediaContainer) {
     mediaContainer.sort(function (a, b) {
       //chaine à comparer en l'occurence les titres et range en alpha
-      console.log(a.dataset.title.localeCompare(b.dataset.title))
+      console.log(a.dataset.title.localeCompare(b.dataset.title));
       return a.dataset.title.localeCompare(b.dataset.title);
     });
   }
@@ -93,7 +96,6 @@ function mediasSort(type) {
   // Fonction pour l'affichage par date
   function sortByDate(mediaContainer) {
     mediaContainer.sort(function (a, b) {
-      
       return a.dataset.date.localeCompare(b.dataset.date);
     });
   }
@@ -106,83 +108,38 @@ function mediasSort(type) {
   });
 }
 
-/*function toggle(mediaLikesButton){
-  let count= like;
-  let elementHasBeenClicked = false;
-  mediaLikesButton.addEventListener('click', function handleClick() {
-    
-    
-      
-      console.log('element clicked');
-      if (elementHasBeenClicked) {
-        console.log('button has already been clicked before');
-        count--;
-        mediaLikes.innerText=count;
-        
-        //mediaLikes.innerText =parseInt(mediaLikes.innerText)-1 ;
-        console.log(mediaLikes.innerText)
-        totalLike.innerText = parseInt(totalLike.innerText)-1 ;
-        console.log(totalLike.innerText)
-      } else {
-        count++;
-        totalLike.innerText = parseInt(totalLike.innerText) +1;
-      }
-      mediaLikes.innerText=count;
-     // mediaLikes.innerText =parseInt(mediaLikes.innerText) +1;
-      console.log(mediaLikes.innerText)
-     // Ajout d'un like dans la bannière totale
-      elementHasBeenClicked = true;
-      return count;
-  });
-}*/
-
-
 function addEventsListeners() {
-  let isActive = false;
+  const collection = document.querySelectorAll(".media_likesbuttonimage");
+  //const mediaLikes=document.querySelectorAll('.media_likes');
 
-  const collection = document.querySelectorAll('.media_likesbuttonimage');
- //const mediaLikes=document.querySelectorAll('.media_likes');
-
- 
   collection.forEach(function (el) {
-    el.addEventListener('click', function handleClick() {
-      console.log('click', el.dataset.likes)
-      let count= el.dataset.likes;
-     // console.log(count)
-      
-  if (isActive){  
-     count ++;
-     console.log('increment', parseInt(count))
-   
-    
-  }else{count --;
-    isActive = true;
-    console.log('decrement', parseInt(count))
-   
-  }
-  collection.innerText = count;
- // console.log(collection.innerText)
-  //totalLike.innerText = parseInt(totalLike.innerText) + 1; // Ajout d'un like dans la bannière totale
- 
-   
- 
-    
-
-
-  
-
-  return count
-  
+    el.addEventListener("click", function handleClick() {
+      const { id, likes } = el.dataset;
+      let count = likes;
+      const totalLike = document.getElementById("totalLike");
+      let totalCount = parseInt(totalLike.innerText, 10);
+      const isLiked = mediaLikes[id];
+      const likesText =
+        el.parentElement.parentElement.querySelector(".media_likes");
+      console.log("likesText", likesText);
+      if (!isLiked) {
+        count++;
+        totalCount++;
+        mediaLikes[id] = true;
+      } else {
+        count--;
+        totalCount--;
+        mediaLikes[id] = false;
+      }
+      if (likesText) {
+        likesText.textContent = count;
+      } else {
+        console.error("likesText is undefined");
+      }
+      el.dataset.likes = count;
+      totalLike.innerText = totalCount.toString();
     });
-  
-  
-  })
-
-
- 
-
-
+  });
 }
 
- 
 init();
