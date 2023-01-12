@@ -119,6 +119,7 @@ function addEventsListeners() {
       const totalLike = document.getElementById("totalLike");
       let totalCount = parseInt(totalLike.innerText, 10);
       const isLiked = mediaLikes[id];
+      console.log(isLiked)
       const likesText =
         el.parentElement.parentElement.querySelector(".media_likes");
       console.log("likesText", likesText);

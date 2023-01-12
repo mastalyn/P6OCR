@@ -28,6 +28,8 @@
    mediaContainer.setAttribute("data-date", dates);
    mediaContainer.setAttribute("data-title", titles);
    mediaLink.dataset.fancybox = "gallery";
+   mediaLikesButtonImage.dataset.id=mediaId
+  
 
    // Pop method for media
    // In MP4 case
