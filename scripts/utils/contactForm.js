@@ -1,8 +1,8 @@
 const form = document.querySelector("form");
 const main = document.querySelector(".main");
 const modalBg = document.getElementById("contact_modal");
-const modalBtn = document.getElementById("displayModal");
-const closeModalBtn = document.getElementById("closeModal");
+//const modalBtn = document.getElementById("displayModal");
+//const closeModalBtn = document.getElementById("closeModal");
 const inputs = document.querySelectorAll(
   'input[type="text"], input[type="email"]'
 );
@@ -54,7 +54,7 @@ const firstChecker = (value) => {
       "first",
       "Le prénom ne doit pas contenir de caractères spéciaux"
     );
-    pseudo = null;
+   
   } else {
     errorDisplay("first", "", true);
     first = value;
@@ -65,10 +65,10 @@ const lastChecker = (value) => {
   console.log(value);
   if (value.length > 0 && (value.length < 3 || value.length > 20)) {
     errorDisplay("last", "Le pseudo doit faire entre 3 et 20 caractères");
-    pseudo = null;
+    
   } else if (!value.match(/^[a-zA-Z0-9_.-]*$/)) {
     errorDisplay("last", "Le nom ne doit pas contenir de caractères spéciaux");
-    pseudo = null;
+    
   } else {
     errorDisplay("last", "", true);
     last = value;
@@ -77,7 +77,7 @@ const lastChecker = (value) => {
 
 const emailChecker = (value) => {
   console.log(value);
-  if (!value.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)) {
+  if (!value.match(/^\w+([-]?\w+)*@\w+([-]?\w+)*(\.\w{2,3})+$/)) {
     errorDisplay("email", "Le mail n'est pas valide");
     email = null;
   } else {
@@ -112,14 +112,14 @@ inputs.forEach((input) => {
       case "textarea":
         textareaChecker(e.target.value);
         break;
-      default:
-        nul;
+      default:return;
+        
     }
   });
 });
 
 // Fonction pour vérifier l'envoi du formulaire
-form.addEventListener("submit", (e) => {
+form.addEventListener("submit", () => {
   console.log("test");
   if (first && last && email && textarea) {
     const data = {

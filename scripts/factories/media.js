@@ -1,5 +1,5 @@
  
- 
+ /* eslint-disable-next-line no-unused-vars*/
  function mediaFactory(mediaData) {
   const { price, likes, image, video, title, date, id } =  mediaData;
  
