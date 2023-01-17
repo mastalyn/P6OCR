@@ -119,7 +119,8 @@ inputs.forEach((input) => {
 });
 
 // Fonction pour vérifier l'envoi du formulaire
-form.addEventListener("submit", () => {
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
   console.log("test");
   if (first && last && email && textarea) {
     const data = {
@@ -136,9 +137,12 @@ form.addEventListener("submit", () => {
     last = null;
     email = null;
     main.style.display = "block";
+    
   } else {
+    
     alert("Veuillez remplir correctement les champs");
   }
+ 
 });
 
 function closeModal() {
