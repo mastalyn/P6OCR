@@ -20,7 +20,7 @@
     </header>
     <main id="main" class="main" aria-hidden="false">
       <section id="photographeInfos"></section>
-      <div
+       <div
         id="contact_modal"
         aria-label="Formulaire de contact"
         aria-haspopup="dialog"
@@ -29,8 +29,9 @@
       >
         <div class="modal">
           <header>
-            <h2>Contactez-moi</h2>
+            <h2 class="modaltitle">Contactez-moi</h2>
             <img
+              class="closemodal"
               src="assets/icons/close.svg"
               onclick="closeModal()"
               alt="Fermer"
@@ -40,51 +41,44 @@
           <form novalidate>
             <div>
               <div class="first-container">
-                <label>Prénom</label>
+                <label for="first">Prénom</label>
                 <input
-                  for="first"
                   tabindex="2"
                   id="first"
                   name="first"
                   type="text"
                   minlength="2"
+                  aria-label="champ prénom"
                   required
                 />
                 <span></span>
               </div>
-              <div class="last-container">
-                <label>Nom</label>
-                <input
-                  for="last"
-                  tabindex="2"
-                  id="last"
-                  name="last"
-                  type="text"
-                  minlength="2"
-                  required
-                />
-                <span></span>
+               <div class="last-container">
+                <label for="last">Nom</label>
+                <input tabindex="2" id="last" name="last" type="text"
+                minlength="2" aria-label=champ nom required />
+                <span> </span>
               </div>
               <div class="email-container">
-                <label>Email</label>
+                <label for="email">Email</label>
                 <input
-                  for="email"
                   tabindex="2"
                   id="email"
                   name="email"
                   type="email"
+                  aria-label="champ email"
                   required
                 />
                 <span></span>
               </div>
               <div class="textarea-container">
-                <label>Votre message</label>
+                <label for="textarea">Votre message</label>
                 <input
-                  for="textarea"
                   tabindex="2"
                   id="textarea"
                   name="textarea"
                   type="text"
+                  aria-label="champ message"
                   required
                 />
                 <span></span>
