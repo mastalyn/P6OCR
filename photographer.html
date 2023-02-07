@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8" />
@@ -12,15 +12,15 @@
     <link
       href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" >
-   
+    <title>Fisheye - photographe</title>
   </head>
   <body id="body-photographer">
     <header>
-      <img src="assets/images/logo.png" class="logo" />
+      <img src="assets/images/logo.png" class="logo" alt="logo fisheye" />
     </header>
     <main id="main" class="main" aria-hidden="false">
       <section id="photographeInfos"></section>
-       <div
+      <div
         id="contact_modal"
         aria-label="Formulaire de contact"
         aria-haspopup="dialog"
@@ -53,11 +53,11 @@
                 />
                 <span></span>
               </div>
-               <div class="last-container">
+              <div class="last-container">
                 <label for="last">Nom</label>
                 <input tabindex="2" id="last" name="last" type="text"
-                minlength="2" aria-label=champ nom required />
-                <span> </span>
+                minlength="2" aria-label="champ nom required />
+                <span></span>
               </div>
               <div class="email-container">
                 <label for="email">Email</label>
@@ -99,11 +99,16 @@
         <div class="sort-choice"></div>
         <span> Trier par </span>
         <select
+          title="tri"
           name="sorter"
           id="sort-choice"
+          aria-label="trie des medias"
           onchange="mediasSort(this.value)"
-        > <option disabled="disabled">────────</option>
-          <option value="popularite" aria-label="Tri popularité">Popularité</option>
+        >
+          <option disabled="disabled">────────</option>
+          <option value="popularite" aria-label="Tri popularité">
+            Popularité
+          </option>
           <option disabled="disabled">────────</option>
           <option value="date" aria-label="Tri date publication">Date</option>
           <option disabled="disabled">────────</option>
@@ -112,32 +117,37 @@
         </select>
       </div>
       <div class="photographer_media"></div>
-     <section>
-    
+      <section
+        id="lightbox"
+        class="lightbox-background"
+        role="lightbox"
+        aria-modal="true"
+        aria-hidden="true"
+        tabindex="2"
+      >
+        <em id="close" class="fa-solid fa-xmark" alt="close button"></em>
+        <em
+          id="rightarrow"
+          aria-label="image précédente"
+          class="fa-solid fa-arrow-right droite"
+          alt="right button"
+          tabindex="2"
+        ></em>
+        <em
+          id="leftarrow"
+          aria-label="image suivante"
+          class="fa-solid fa-arrow-left gauche"
+          alt="left button"
+          tabindex="2"
+        ></em>
       </section>
-     
-      
     </main>
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
-    <script src="scripts/pages/photographer.js"></script>
- 
+    <script src="scripts/pages/photographer.js"></script> 
   <script src="scripts/factories/media.js"></script>
   <script  src="scripts/factories/photographer.js"></script>
   <script  src="scripts/utils/contactform.js"></script>
  
-  </body>
-    
- 
-  
-  
-  
- 
-  
- 
- 
-  
-
- 
- 
+  </body> 
 
 </html>
