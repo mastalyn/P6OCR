@@ -1,8 +1,6 @@
 const form = document.querySelector("form");
 const main = document.querySelector(".main");
 const modalBg = document.getElementById("contact_modal");
-//const modalBtn = document.getElementById("displayModal");
-//const closeModalBtn = document.getElementById("closeModal");
 const inputs = document.querySelectorAll(
   'input[type="text"], input[type="email"]'
 );
@@ -154,4 +152,4 @@ modalBg.onkeydown = function (event) {
   if (event.key === "Escape") closeModal();
 };
 
-// closeModalBtn.addEventListener("click", closeModal);
+

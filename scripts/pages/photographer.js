@@ -61,13 +61,13 @@ function displayDataMedia(medias) {
   return displaylikes;
 }
 
-// Fonction pour l'affichage des médias dans la lightbox
+
 
 // Fonction pour le tri des médias
 // eslint-disable-next-line no-unused-vars
 function mediasSort(type) {
   let mediaContainer = document.querySelectorAll(".media_container");
-  //coupe mediacontaianer en autant de médias qu'il ya , trouve une array de media
+  //coupe mediacontaianer en autant de médias qu'il ya , trouve un array de media
   mediaContainer = [].slice.call(mediaContainer);
   if (type === "title") {
     sortByTitle(mediaContainer);
@@ -110,7 +110,7 @@ function mediasSort(type) {
 
 function addEventsListeners() {
   const collection = document.querySelectorAll(".media_likesbuttonimage");
-  //const mediaLikes=document.querySelectorAll('.media_likes');
+ 
 
   collection.forEach(function (el) {
     el.addEventListener("click", function handleClick() {
